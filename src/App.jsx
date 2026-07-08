@@ -1,263 +1,63 @@
-const navItems = [
-  ['Platform', '#platform'],
-  ['Workflow', '#workflow'],
-  ['Use cases', '#use-cases'],
-  ['Pricing', '#pricing'],
-  ['Contact', '#contact']
-];
+const BRANDKIT = 'data:image/webp;base64,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';
 
-const metrics = [
-  ['100%', 'policy aligned'],
-  ['$1.2M', 'projected savings'],
-  ['2.4 days', 'avg. cycle time'],
-  ['Full', 'audit trail']
-];
-
-const capabilities = [
-  ['01', 'Orchestrate', 'Coordinate agents, workflows, approvals and merchant systems inside one governed layer.'],
-  ['02', 'Observe', 'Surface live activity, risk signals, policy status and performance for every agent action.'],
-  ['03', 'Negotiate', 'Run parallel merchant conversations with data-backed strategy and live commercial leverage.'],
-  ['04', 'Audit', 'Record approvals, terms, exceptions and outcomes in a complete traceable history.']
-];
-
-const workflow = ['Intake', 'Analyze', 'Negotiate', 'Approve', 'Execute'];
-
-const useCases = [
-  ['Procurement teams', 'Discover suppliers, compare markets and move from request to purchase order with less manual work.'],
-  ['Merchants', 'Respond to intelligent buyers with structured offers, policy-aware terms and faster close cycles.'],
-  ['Finance & Risk', 'Enforce authority, spend policy, approval evidence and audit readiness before money moves.']
-];
-
-const plans = [
-  ['Pilot', 'Validate one high-value workflow.', ['3 workflows', '5 merchant connections', 'Standard policies', '30-day audit trail']],
-  ['Scale', 'Expand autonomous purchasing.', ['Unlimited workflows', 'Unlimited merchants', 'Advanced policies', '180-day audit trail']],
-  ['Enterprise', 'Deploy across the company.', ['SSO and data residency', 'Custom governance', 'Dedicated support', '1-year+ audit history']]
+const panels = [
+  { number: '01', title: 'Auditable autonomy for purchasing.', label: 'Brand hero', copy: 'Atlas orchestrates intelligent commerce across merchants so teams can observe, negotiate and audit every buying decision with confidence.', pos: '0% 0%', size: '280%' },
+  { number: '02', title: 'Symbol rationale', label: 'Arch · Globe · North Star · Agent', copy: 'The Atlas mark becomes the primary visual language: structure, reach, guidance and autonomous intelligence.', pos: '50% 0%', size: '280%' },
+  { number: '03', title: 'Color system', label: 'Obsidian / Ivory / Atlas Blue / Antique Gold', copy: 'The interface stays locked to the original brandkit palette and signal hierarchy.', pos: '100% 0%', size: '280%' },
+  { number: '04', title: 'Product experience', label: 'Purchase workflow', copy: 'Use the actual Atlas dashboard motif: purchase workflow, negotiation panel, agent orchestration and audit trail.', pos: '100% 45%', size: '280%' },
+  { number: '05', title: 'Mythic editorial', label: 'Bearing complexity. Enabling commerce.', copy: 'The Atlas figure and globe carry the large editorial moments across the site.', pos: '18% 100%', size: '205%' },
+  { number: '06', title: 'Brand principles', label: 'Orchestrate · Observe · Negotiate · Audit · Trust', copy: 'Every section is now built around the same principles and actual brandkit art direction.', pos: '100% 100%', size: '205%' }
 ];
 
 function Logo() {
-  return (
-    <a className="logo" href="#top" aria-label="Atlas home">
-      <svg viewBox="0 0 64 64" aria-hidden="true">
-        <path d="M9 54 32 8l23 46" />
-        <path d="M18 54h28" />
-        <circle cx="32" cy="38" r="10" />
-        <path d="M22 38h20M32 28v20M25 31c4 3 10 3 14 0M25 45c4-3 10-3 14 0" />
-        <path d="M32 3v10M27 8h10" />
-      </svg>
-      <span>ATLAS</span>
-    </a>
-  );
+  return <a className="logo" href="#top"><span className="mark">A</span><span>ATLAS</span></a>;
 }
 
-function Button({ children, ghost = false, href = '#contact' }) {
-  return (
-    <a className={ghost ? 'button buttonGhost' : 'button'} href={href}>
-      <span>{children}</span>
-      <span aria-hidden="true">→</span>
-    </a>
-  );
+function Header() {
+  return <header><Logo /><nav><a href="#brandkit">Brandkit</a><a href="#product">Product</a><a href="#principles">Principles</a><a href="#contact">Contact</a></nav><a className="demo" href="#contact">Book a demo</a></header>;
 }
 
-function Glyph({ index = 0 }) {
-  const paths = [
-    <><circle cx="24" cy="24" r="5"/><circle cx="10" cy="24" r="5"/><circle cx="38" cy="24" r="5"/><circle cx="24" cy="10" r="5"/><circle cx="24" cy="38" r="5"/><path d="M15 24h18M24 15v18"/></>,
-    <><circle cx="24" cy="24" r="17"/><path d="M7 24h34M24 7c5 6 7 11 7 17s-2 11-7 17M24 7c-5 6-7 11-7 17s2 11 7 17"/></>,
-    <><path d="M10 29 19 18l8 7 4-5 7 8"/><path d="M10 36h28"/><circle cx="34" cy="14" r="3"/></>,
-    <><path d="M24 5 39 11v12c0 10-6 17-15 21-9-4-15-11-15-21V11l15-6Z"/><path d="m18 24 4 4 8-10"/></>
-  ];
-  return <svg className="glyph" viewBox="0 0 48 48" aria-hidden="true">{paths[index % paths.length]}</svg>;
-}
-
-function ProductConsole() {
-  return (
-    <div className="console">
-      <div className="consoleTop">
-        <div>
-          <span>Purchase Workflow</span>
-          <small>WF-7821</small>
-        </div>
-        <b>Active</b>
-      </div>
-
-      <div className="workflowRail">
-        {workflow.map((step, index) => (
-          <div className="workflowStep" key={step}>
-            <i>{index + 1}</i>
-            <span>{step}</span>
-          </div>
-        ))}
-      </div>
-
-      <div className="consoleGrid">
-        <section className="agentList">
-          <small>Agent orchestration</small>
-          {['Market analyst', 'Risk evaluator', 'Negotiation agent', 'Audit agent'].map((agent) => (
-            <p key={agent}><span />{agent}<em>live</em></p>
-          ))}
-        </section>
-
-        <section className="offerCard">
-          <small>Best offer</small>
-          <h3>Merchant A</h3>
-          <strong>$96,250</strong>
-          <em>12% better</em>
-          <div className="chart"><i/><i/><i/><i/><i/></div>
-        </section>
-
-        <section className="auditCard">
-          <small>Audit trail</small>
-          {['Analysis complete', '8 merchants qualified', 'Policy check passed', 'Approved by J. Patel', 'PO issued'].map((event, index) => (
-            <p key={event}><time>10:{42 + index * 3}</time>{event}</p>
-          ))}
-        </section>
-      </div>
-    </div>
-  );
+function BrandCrop({ panel }) {
+  return <div className="crop" style={{ backgroundImage: `url(${BRANDKIT})`, backgroundPosition: panel.pos, backgroundSize: panel.size }} />;
 }
 
 function Hero() {
   return (
     <section className="hero" id="top">
-      <header className="siteHeader">
-        <Logo />
-        <nav>{navItems.map(([label, href]) => <a key={label} href={href}>{label}</a>)}</nav>
-        <Button>Book a demo</Button>
-      </header>
-
-      <div className="heroGrid shell">
-        <div className="heroCopy">
-          <p className="eyebrow">Agentic commerce system</p>
-          <h1>Auditable autonomy for purchasing.</h1>
-          <p className="lede">Atlas orchestrates intelligent commerce across merchants so teams can observe, negotiate and enforce every buying decision with confidence.</p>
-          <div className="actions"><Button>Book a demo</Button><Button ghost href="#platform">See platform</Button></div>
-          <div className="heroTags"><span>Orchestrate</span><span>Observe</span><span>Negotiate</span><span>Audit</span></div>
-        </div>
-
-        <div className="heroVisual" aria-hidden="true">
-          <div className="orbital"><div className="planet"/><div className="northStar"/></div>
-          <ProductConsole />
-        </div>
+      <Header />
+      <div className="heroImage" style={{ backgroundImage: `url(${BRANDKIT})` }} />
+      <div className="heroShade" />
+      <div className="heroText">
+        <p>Agentic commerce system</p>
+        <h1>Auditable autonomy for purchasing.</h1>
+        <span>Orchestrate · Observe · Negotiate · Audit</span>
       </div>
     </section>
   );
 }
 
-function Proof() {
+function Panel({ panel }) {
   return (
-    <section className="proof section">
-      <div className="shell proofGrid">
-        <div>
-          <p className="eyebrow">Trusted infrastructure</p>
-          <h2>Policy-safe decisions across procurement, finance and merchant teams.</h2>
-        </div>
-        <div className="metricGrid">{metrics.map(([value, label]) => <article key={label}><strong>{value}</strong><span>{label}</span></article>)}</div>
-      </div>
+    <section className="brandPanel" id={panel.number === '01' ? 'brandkit' : panel.number === '04' ? 'product' : undefined}>
+      <div className="panelMeta"><span>{panel.number}</span><p>{panel.label}</p></div>
+      <div className="panelCopy"><h2>{panel.title}</h2><p>{panel.copy}</p></div>
+      <BrandCrop panel={panel} />
     </section>
   );
 }
 
-function Features() {
+function Principles() {
   return (
-    <section className="section features" id="platform">
-      <div className="shell">
-        <div className="sectionHead wide">
-          <p className="eyebrow">Core capabilities</p>
-          <h2>Control the full purchasing workflow.</h2>
-          <p>Atlas turns agent autonomy into a visible, scoped and enforceable operating system.</p>
-        </div>
-        <div className="featureGrid">
-          {capabilities.map(([num, title, copy], index) => (
-            <article key={title}>
-              <div className="cardTop"><Glyph index={index}/><span>{num}</span></div>
-              <h3>{title}</h3>
-              <p>{copy}</p>
-            </article>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function Product() {
-  return (
-    <section className="section product" id="workflow">
-      <div className="shell productGrid">
-        <ProductConsole />
-        <div className="productCopy">
-          <p className="eyebrow">Product experience</p>
-          <h2>See every decision from intake to approval.</h2>
-          <p>Every negotiation, policy check and approval event is captured in a single system of record — designed for commercial teams that need speed without losing control.</p>
-          <div className="callouts"><span>Policy check</span><span>Best offer</span><span>Audit event</span></div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function UseCases() {
-  return (
-    <section className="section usecases" id="use-cases">
-      <div className="shell">
-        <div className="sectionHead">
-          <p className="eyebrow">Use cases</p>
-          <h2>Built for every side of the transaction.</h2>
-        </div>
-        <div className="useGrid">{useCases.map(([title, copy], index) => <article key={title}><Glyph index={index}/><h3>{title}</h3><p>{copy}</p></article>)}</div>
-      </div>
-    </section>
-  );
-}
-
-function Testimonials() {
-  return (
-    <section className="section testimonials">
-      <div className="shell quoteGrid">
-        <div>
-          <p className="eyebrow">Proof</p>
-          <h2>Autonomy that can be trusted.</h2>
-          <p>Procurement moves faster when every action is visible, bounded and recorded.</p>
-        </div>
-        <article className="quote"><q>Atlas runs the negotiation while my team stays focused on strategy. The outcomes speak for themselves.</q><span>Sarah Mitchell · VP Procurement</span></article>
-        <article className="quote stat"><strong>8</strong><span>merchants negotiated in parallel</span></article>
-      </div>
-    </section>
-  );
-}
-
-function Pricing() {
-  return (
-    <section className="section pricing" id="pricing">
-      <div className="shell">
-        <div className="sectionHead center">
-          <p className="eyebrow">Pricing</p>
-          <h2>Start with a workflow. Scale to full autonomy.</h2>
-          <p>Usage-based enterprise deployment for agentic commerce.</p>
-        </div>
-        <div className="planGrid">{plans.map(([name, desc, items], index) => <article className={index === 1 ? 'featuredPlan' : ''} key={name}><h3>{name}</h3><p>{desc}</p><div>{items.map((item) => <span key={item}>✓ {item}</span>)}</div><Button ghost={index !== 1}>Request pricing</Button></article>)}</div>
-      </div>
+    <section className="principles" id="principles">
+      {['Orchestrate', 'Observe', 'Negotiate', 'Audit', 'Trust'].map((item) => <article key={item}><span>✦</span><h3>{item}</h3><p>{item === 'Trust' ? 'Built on policy, governance and verifiable integrity.' : 'A core Atlas operating mode carried directly from the brandkit.'}</p></article>)}
     </section>
   );
 }
 
 function CTA() {
-  return (
-    <footer className="cta" id="contact">
-      <div className="shell ctaInner">
-        <p className="eyebrow">Deploy Atlas</p>
-        <h2>Bearing complexity. Enabling commerce.</h2>
-        <p>Orchestrate purchasing with visibility, confidence and enforceable control.</p>
-        <div className="actions"><Button>Book a demo</Button><Button ghost href="#top">Back to top</Button></div>
-        <div className="footerBar">
-          <Logo />
-          <span>Policy-safe · Auditable · Enterprise-ready</span>
-          <nav>{navItems.slice(0, 4).map(([label, href]) => <a key={label} href={href}>{label}</a>)}</nav>
-        </div>
-      </div>
-    </footer>
-  );
+  return <footer id="contact"><h2>Bearing complexity. Enabling commerce.</h2><p>Deploy Atlas to orchestrate purchasing with visibility, confidence and enforceable control.</p><a className="demo large" href="mailto:hello@atlas.ai">Book a demo</a><Logo /></footer>;
 }
 
 export default function App() {
-  return <main><Hero /><Proof /><Features /><Product /><UseCases /><Testimonials /><Pricing /><CTA /></main>;
+  return <main><Hero />{panels.map((panel) => <Panel key={panel.number} panel={panel} />)}<Principles /><CTA /></main>;
 }
